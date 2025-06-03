@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Form Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Form</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      user-select: none; /* Prevent text selection */
+      font-family: Arial, sans-serif;
+      padding: 2em;
     }
-    iframe {
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+    input, textarea, button {
       width: 100%;
-      height: 100vh;
-      border: none;
+      margin: 1em 0;
+      padding: 0.5em;
+      font-size: 1em;
+    }
+    /* 🛡️ Copy protection */
+    *:not(input):not(textarea):not(select):not(button):not(label) {
+      user-select: none !important;
     }
   </style>
 </head>
 <body>
-  <!-- Paste your form iframe below -->
-  <iframe src="https://google-form-proxy.traian-nicula01.workers.dev">Loading…</iframe>
+  <h1>Feedback Form</h1>
+  <form action="https://formspree.io/f/myzjylpb" method="POST">
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>What do you think?</label>
+    <textarea name="message" rows="5" required></textarea>
+
+    <label>Choose an option:</label>
+    <label><input type="radio" name="choice" value="A" required> Option A</label>
+    <label><input type="radio" name="choice" value="B"> Option B</label>
+    <label><input type="radio" name="choice" value="C"> Option C</label>
+
+    <button type="submit">Send</button>
+  </form>
 </body>
 </html>
