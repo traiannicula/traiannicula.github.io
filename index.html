@@ -2,44 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Custom Form</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2em;
-    }
-    form {
-      max-width: 600px;
-      margin: auto;
-    }
-    input, textarea, button {
-      width: 100%;
-      margin: 1em 0;
-      padding: 0.5em;
-      font-size: 1em;
-    }
-    /* 🛡️ Copy protection */
-    *:not(input):not(textarea):not(select):not(button):not(label) {
+    body { font-family: sans-serif; padding: 2em; max-width: 600px; margin: auto; }
+    label { display: block; margin-top: 1em; }
+    input, textarea, button { width: 100%; padding: 0.5em; margin-top: 0.3em; }
+    .no-copy *:not(input):not(textarea):not(select):not(button):not(label) {
       user-select: none !important;
     }
   </style>
 </head>
-<body>
+<body class="no-copy">
   <h1>Feedback Form</h1>
-  <form action="https://formspree.io/f/myzjylpb" method="POST">
-    <label>Email:</label>
-    <input type="email" name="email" required>
-
-    <label>What do you think?</label>
-    <textarea name="message" rows="5" required></textarea>
-
-    <label>Choose an option:</label>
-    <label><input type="radio" name="choice" value="A" required> Option A</label>
-    <label><input type="radio" name="choice" value="B"> Option B</label>
-    <label><input type="radio" name="choice" value="C"> Option C</label>
-
+  <form id="myForm">
+    <label>Email:
+      <input type="email" name="email" required />
+    </label>
+    <label>Message:
+      <textarea name="message" required></textarea>
+    </label>
+    <label>Choice:
+      <label><input type="radio" name="choice" value="A" required> A</label>
+      <label><input type="radio" name="choice" value="B"> B</label>
+      <label><input type="radio" name="choice" value="C"> C</label>
+    </label>
     <button type="submit">Send</button>
   </form>
+
+  <script>
+    const form = document.getElementById("myForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const json = Object.fromEntries(formData.entries());
+
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxfV9Vha2Tc_PMgjm0M-txBdV8L8InOCzsWtf5Sv0X1IW39bnm_aYGP87duKIIcIfKo_Q/exec", {
+        method: "POST",
+        body: JSON.stringify(json),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        alert("Response submitted successfully!");
+        form.reset();
+      } else {
+        alert("Something went wrong.");
+      }
+    });
+  </script>
 </body>
 </html>
