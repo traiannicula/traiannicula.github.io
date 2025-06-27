@@ -9,37 +9,8 @@
       font-family: Arial, sans-serif;
       padding: 2em;
     }
-    form {
-      max-width: 600px;
-      margin: auto;
-    }
-    input, textarea, button {
-      width: 100%;
-      margin: 1em 0;
-      padding: 0.5em;
-      font-size: 1em;
-    }
-    /* 🛡️ Copy protection */
-    *:not(input):not(textarea):not(select):not(button):not(label) {
-      user-select: none !important;
-    }
   </style>
 </head>
 <body>
-  <h1>Feedback Form</h1>
-  <form action="https://script.google.com/macros/s/AKfycbxfV9Vha2Tc_PMgjm0M-txBdV8L8InOCzsWtf5Sv0X1IW39bnm_aYGP87duKIIcIfKo_Q/exec" method="POST">
-    <label>Email:</label>
-    <input type="email" name="email" required>
-
-    <label>What do you think?</label>
-    <textarea name="message" rows="5" required></textarea>
-
-    <label>Choose an option:</label>
-    <label><input type="radio" name="choice" value="A" required> Option A</label>
-    <label><input type="radio" name="choice" value="B"> Option B</label>
-    <label><input type="radio" name="choice" value="C"> Option C</label>
-
-    <button type="submit">Send</button>
-  </form>
 </body>
 </html>
